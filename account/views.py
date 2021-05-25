@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import message, send_mail
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import *
 import uuid
@@ -72,6 +72,11 @@ def register_attempt(request):
         print(e)
 
     return render(request, 'register.html')
+
+
+def logout_attempt(request):
+    logout(request)
+    return redirect('/login')
 
 
 def success(request):
